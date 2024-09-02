@@ -1,0 +1,23 @@
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-count',
+  standalone: true,
+  imports: [],
+  templateUrl: './count.component.html',
+  styleUrl: './count.component.css'
+})
+export class CountComponent {
+  count:number = 0;
+
+  incrementCount(){
+    this.count += 1
+  }
+
+  decrementCount(){
+    if(this.count > 0){
+      this.count -= 1
+    }
+  }
+
+}
