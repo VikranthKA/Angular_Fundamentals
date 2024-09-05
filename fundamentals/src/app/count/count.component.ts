@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Fruit } from '../../fruits';
+import { FRUITS } from '../../fruit-lists';
 
 @Component({
   selector: 'app-count',
@@ -20,4 +22,5 @@ export class CountComponent {
     }
   }
 
+ 
 }

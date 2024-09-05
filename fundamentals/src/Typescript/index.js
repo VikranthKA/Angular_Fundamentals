@@ -1,3 +1,4 @@
+// console.log("hello")
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,11 +35,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-console.log("hello");
 function greet(name, age) {
     console.log("Hello ".concat(name, " your age is ").concat(age));
 }
-greet("Name", new Date());
+// greet("Name",new Date())
 var obj1 = {
     x: 1
 };
@@ -69,4 +69,21 @@ var person = {
     name: "Alice",
     age: 25
 };
-console.log(person);
+// console.log(person)
+//Classes
+var Animal = /** @class */ (function () {
+    function Animal(name) {
+        this.name = name;
+    }
+    Animal.prototype.speak = function () {
+        console.log("".concat(this.name, " make animal noise"));
+    };
+    return Animal;
+}());
+var dog = new Animal("Dog");
+dog.speak();
+//Genrics
+function identity(args) {
+    return args;
+}
+console.log(identity(333));

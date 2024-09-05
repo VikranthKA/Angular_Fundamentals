@@ -1,0 +1,28 @@
+
+<div>
+
+    <h2>Fruits available</h2>
+    <ul class="newcomp">
+        <li *ngFor="let fruit of fruits"
+        [class.selected]="fruit === selectedFruit"
+        (click)="onSelect(fruit)">
+        
+        
+        <span class="badge">{{fruit.id}}</span>{{fruit.name}}
+        
+    </li>
+    
+</ul>
+
+
+<div *ngIf="selectedFruit">
+    <h2>{{selectedFruit.name | uppercase}} Details</h2>
+    <div><span>id:</span>{{selectedFruit.id}}</div>
+    <div>
+        <label>name:
+            <input [(ngModel)]="selectedFruit.name" placeholder="name"/>
+        </label>
+    </div>
+
+</div>
+</div>

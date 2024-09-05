@@ -1,11 +1,11 @@
-console.log("hello")
+// console.log("hello")
 
 
 function greet(name:string,age:Date){
     console.log(`Hello ${name} your age is ${age}`)
 }
 
-greet("Name",new Date())
+// greet("Name",new Date())
 
 let obj1:any={
     x:1
@@ -40,6 +40,8 @@ function greetUser(name:string):string{
 let numbers:number[] = [1,2,3,4];
 let persons:[string,number]=["John",80]
 
+
+//Interface
 interface Person{
     name:string,
     age:number
@@ -50,4 +52,32 @@ const person:Person={
     age:25
 }
 
-console.log(person)
+// console.log(person)
+
+
+//Classes
+
+class Animal{
+    name:string
+
+    constructor(name:string){
+        this.name=name
+    }
+
+    speak():void{
+        console.log(`${this.name} make animal noise`)
+    }
+}
+
+const dog = new Animal("Dog")
+dog.speak()
+
+
+//Genrics
+
+function identity<T>(args:T):T{
+    return args
+}
+
+console.log(identity<number>(333))
+
