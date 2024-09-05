@@ -1,5 +1,16 @@
 <div>
   <h1>Welcome by app</h1>
+  {{msg}}
+  <ul>
+    <li *ngFor="let ele of myArray">{{ ele }}</li>
+  </ul>
+
+  <ul>
+    <li *ngIf = "myArray.length > 0; else idTemplate">Array if present
+
+    </li>
+  </ul>
+  <ng-template #idTemplate>Array if empty</ng-template>
 <app-login></app-login>
 <app-count></app-count>
 </div>
