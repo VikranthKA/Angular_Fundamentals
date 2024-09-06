@@ -81,3 +81,44 @@ function identity<T>(args:T):T{
 
 console.log(identity<number>(333))
 
+//Union Types
+
+function prindId(id:number | string):void{
+    console.log(`ID:${id}`);
+}
+
+prindId(2680);
+prindId("PCSGLOBAL");
+
+//Tuple
+
+let ourTuple:readonly [number,boolean,string]=[9,false,"string"]
+// ourTuple = [false,"coding",1]
+
+
+// Object
+
+const car : {type:string,model:string,year:number}={
+    type:"A",
+    model:"B",
+    year:2
+}
+//we can solve above by using the interface
+
+
+const car2:{type:string,milage?:number}={
+    type:"A",
+}
+
+//Enum : Is a special class that represents a group of constants 
+
+enum CardinalDirections {
+    North = 1,
+    East,
+    South,
+    West
+}
+
+console.log(CardinalDirections.North)
+console.log(CardinalDirections.West)
+

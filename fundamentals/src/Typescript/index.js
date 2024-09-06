@@ -87,3 +87,32 @@ function identity(args) {
     return args;
 }
 console.log(identity(333));
+//Union Types
+function prindId(id) {
+    console.log("ID:".concat(id));
+}
+prindId(2680);
+prindId("PCSGLOBAL");
+//Tuple
+var ourTuple = [9, false, "string"];
+// ourTuple = [false,"coding",1]
+// Object
+var car = {
+    type: "A",
+    model: "B",
+    year: 2
+};
+//we can solve above by using the interface
+var car2 = {
+    type: "A",
+};
+//Enum : Is a special class that represents a group of constants 
+var CardinalDirections;
+(function (CardinalDirections) {
+    CardinalDirections[CardinalDirections["North"] = 1] = "North";
+    CardinalDirections[CardinalDirections["East"] = 2] = "East";
+    CardinalDirections[CardinalDirections["South"] = 3] = "South";
+    CardinalDirections[CardinalDirections["West"] = 4] = "West";
+})(CardinalDirections || (CardinalDirections = {}));
+console.log(CardinalDirections.North);
+console.log(CardinalDirections.West);
