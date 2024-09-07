@@ -6,10 +6,11 @@ import { LoginComponent } from './login/login.component';
 import { CountComponent } from './count/count.component';
 import { FormsModule } from '@angular/forms';
 import { NewComponent } from './new/new.component';
+import { SimpleFormComponent } from './simple-form/simple-form.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,LoginComponent,CountComponent,CommonModule,FormsModule,NewComponent],
+  imports: [RouterOutlet,LoginComponent,CountComponent,CommonModule,FormsModule,NewComponent,SimpleFormComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
