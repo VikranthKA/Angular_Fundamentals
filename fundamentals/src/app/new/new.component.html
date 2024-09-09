@@ -25,4 +25,17 @@
     </div>
 
 </div>
+
+<div>
+    <select [(ngModel)]="selectedFruit">
+        <option *ngFor="let fruit of fruits" [value]="fruit.name">{{fruit.name}}</option>
+
+    </select>
+    <div class="row" [ngSwitch]="selectedFruit">
+        <div *ngSwitchCase="'Apple'">Apple selected</div>
+        <div *ngSwitchCase="'Mango'">Mango selected</div>
+        <div *ngSwitchDefault>No fruit selected</div>
+
+    </div>
+</div>
 </div>

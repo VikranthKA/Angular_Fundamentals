@@ -1,18 +1,109 @@
-<p>simple-form works!</p>
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name" formControlName="username" required>
-
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" formControlName="email"  required>
-    
-    <label for="password">Password:</label>
-    <input id="password" type="password" name="password" formControlName="password" />
-
-    <button type="submit" >Submit</button>
-
-    <div ng-if="myForm.valid">
-        <h2>Form Submitted:</h2>
-    
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div *ngIf="submitted && form.invalid" class="alert alert-danger ">
+      Please fill out the form correctly.
     </div>
-</form>
+  
+    <div>
+      <label for="firstName">First Name</label>
+      <input id="firstName" formControlName="firstName">
+      <div *ngIf="submitted && form.controls['firstName'].errors">
+        <small *ngIf="form.controls['firstName'].errors['required']" class="alert">First Name is required.</small>
+        <small *ngIf="form.controls['firstName'].errors['minlength']" class="alert">Minimum 3 characters.</small>
+      </div>
+    </div>
+  
+    <div>
+      <label for="lastName">Last Name</label>
+      <input id="lastName" formControlName="lastName">
+      <div *ngIf="submitted && form.controls['lastName'].errors">
+        <small *ngIf="form.controls['lastName'].errors['required']" class="alert">Last Name is required.</small>
+        <small *ngIf="form.controls['lastName'].errors['minlength']" class="alert">Minimum 3 characters.</small>
+      </div>
+    </div>
+  
+    <div>
+      <label for="email">Email</label>
+      <input id="email" formControlName="email">
+      <div *ngIf="submitted && form.controls['email'].errors">
+        <small *ngIf="form.controls['email'].errors['required']" class="alert">Email is required.</small>
+        <small *ngIf="form.controls['email'].errors['email']" class="alert">Invalid email format.</small>
+      </div>
+    </div>
+  
+    <div>
+      <label for="phoneNumber">Phone Number</label>
+      <input id="phoneNumber" formControlName="phoneNumber">
+      <div *ngIf="submitted && form.controls['phoneNumber'].errors">
+        <small *ngIf="form.controls['phoneNumber'].errors['required']" class="alert">Phone number is required.</small>
+        <small *ngIf="form.controls['phoneNumber'].errors['pattern']" class="alert">Invalid phone number format.</small>
+        <small *ngIf="form.controls['phoneNumber'].errors['maxlength']" class="alert">Must be 10 digits.</small>
+        <small *ngIf="form.controls['phoneNumber'].errors['minlength']" class="alert">Must be 10 digits.</small>
+      </div>
+    </div>
+  
+    <div>
+      <label for="address">Address</label>
+      <input id="address" formControlName="address">
+      <div *ngIf="submitted && form.controls['address'].errors" class="alert">
+        <small *ngIf="form.controls['address'].errors['required']" class="alert">Address is required.</small>
+      </div>
+    </div>
+  
+    <div>
+      <label for="city">City</label>
+      <input id="city" formControlName="city">
+      <div *ngIf="submitted && form.controls['city'].errors" class="alert">
+        <small *ngIf="form.controls['city'].errors['required']" class="alert">City is required.</small>
+      </div>
+    </div>
+  
+    <div>
+      <label for="state">State</label>
+      <input id="state" formControlName="state">
+      <div *ngIf="submitted && form.controls['state'].errors" class="alert">
+        <small *ngIf="form.controls['state'].errors['required']" class="alert">State is required.</small>
+      </div>
+    </div>
+  
+    <div>
+      <label for="country">Country</label>
+      <input id="country" formControlName="country">
+      <div *ngIf="submitted && form.controls['country'].errors" class="alert">
+        <small *ngIf="form.controls['country'].errors['required']" class="alert">Country is required.</small>
+      </div>
+    </div>
+  
+    <div>
+      <label for="zipCode">Zip Code</label>
+      <input id="zipCode" formControlName="zipCode">
+      <div *ngIf="submitted && form.controls['zipCode'].errors">
+        <small *ngIf="form.controls['zipCode'].errors['required']" class="alert">Zip Code is required.</small>
+        <small *ngIf="form.controls['zipCode'].errors['pattern']" class="alert">Invalid Zip Code format.</small>
+      </div>
+    </div>
+  
+    <div>
+      <label for="dob">Date of Birth</label>
+      <input id="dob" type="date" formControlName="dob">
+      <div *ngIf="submitted && form.controls['dob'].errors">
+        <small *ngIf="form.controls['dob'].errors['required']" class="alert">Date of Birth is required.</small>
+      </div>
+    </div>
+  
+    <button type="submit">Submit</button>
+  </form>
+  
+  <div *ngIf="formData">
+    <h3>Form Data</h3>
+    <table border="1">
+      <tr>
+        <th>Field</th>
+        <th>Value</th>
+      </tr>
+      <tr *ngFor="let key of formDataKeys">
+        <td>{{ key }}</td>
+        <td>{{ formData[key] }}</td>
+      </tr>
+    </table>
+  </div>
+  
