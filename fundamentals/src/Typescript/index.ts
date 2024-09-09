@@ -1,9 +1,9 @@
 // console.log("hello")
 
 
-function greet(name:string,age:Date){
-    console.log(`Hello ${name} your age is ${age}`)
-}
+// function greet(name:string,age:Date){
+//     console.log(`Hello ${name} your age is ${age}`)
+// }
 
 // greet("Name",new Date())
 
@@ -42,15 +42,15 @@ let persons:[string,number]=["John",80]
 
 
 //Interface
-interface Person{
-    name:string,
-    age:number
-}
+// interface Person{
+//     name:string,
+//     age:number
+// }
 
-const person:Person={
-    name:"Alice",
-    age:25
-}
+// const person:Person={
+//     name:"Alice",
+//     age:25
+// }
 
 // console.log(person)
 
@@ -121,4 +121,120 @@ enum CardinalDirections {
 
 console.log(CardinalDirections.North)
 console.log(CardinalDirections.West)
+
+
+//9-9-24
+
+
+//function
+
+function addNumber(a:number=10,b:number=a):void{
+    // console.log(a*b) 
+}
+
+//Rest Parameters
+function add(a:number,b:number,...rest:number[]){
+    console.log(a,b,rest)
+    return rest.reduce((cv,acc)=>cv+acc,0)
+
+}
+
+console.log(add(10,10,10,10))
+
+//Special Type
+
+let value1 :any =true;
+value1 = "string"
+// console.log(value1)//no error
+
+let value2:unknown = 1;
+value2 = 3
+// console.log(typeof value2,"type")
+
+let value3:never
+
+let value4:undefined
+
+let value5:null
+
+
+// Type Alias
+//TS
+type CarYear = number
+type CarModel = string
+type CarColors = string[]
+
+//type are const variables
+
+type Car = {
+    year:CarYear,
+    model:CarModel,
+    colors:CarColors
+}
+
+
+//Casting is the Type of overriding the a type:explictly
+
+//as
+
+let someValue :unknown = "string"
+let strLength:number=(someValue as string).length
+
+//angle-brackets <> not for JSX
+
+let strLength2:number = (<string>someValue).length
+
+//Classes
+// public-(default) allows access to the class member from anywhere
+//private - only allows access to the class member from within the class
+//protected - allows access  to the class member  from itself  and any classes that inherit it
+
+class Person {
+    private name: string;
+    public age: number;
+    protected date:number=0;
+
+    public constructor(name: string, age: number,date?:number) {
+        this.name = name;
+        this.age = age;
+        if(date !== undefined){
+            this.date = date
+        }
+    }
+
+    public getDate():number{
+        return this.date
+    }
+
+    public getName(): string {
+        return this.name;
+    }
+}
+
+class User1 extends Person{
+    private isAlive : boolean=true;
+
+    constructor(name:string,age:number,date:number,isAlive:boolean){
+        super(name,age,date);
+        this.isAlive=isAlive
+    }
+
+    public checkIsAlive(){
+        console.log(`The User ${this.getName()} of date ${this.getDate()} is alive ${this.isAlive}`)
+    }
+}
+
+const person = new Person("John", 25,2024);
+console.log(person.getName())
+// console.log(person.name)//Error becoz of private
+
+const user = new User1("Jane",30,2024,true)
+user.checkIsAlive()
+
+
+
+
+
+
+
 

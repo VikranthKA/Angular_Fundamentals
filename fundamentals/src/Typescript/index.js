@@ -1,4 +1,19 @@
 // console.log("hello")
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,9 +50,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function greet(name, age) {
-    console.log("Hello ".concat(name, " your age is ").concat(age));
-}
+// function greet(name:string,age:Date){
+//     console.log(`Hello ${name} your age is ${age}`)
+// }
 // greet("Name",new Date())
 var obj1 = {
     x: 1
@@ -65,10 +80,15 @@ function greetUser(name) {
 }
 var numbers = [1, 2, 3, 4];
 var persons = ["John", 80];
-var person = {
-    name: "Alice",
-    age: 25
-};
+//Interface
+// interface Person{
+//     name:string,
+//     age:number
+// }
+// const person:Person={
+//     name:"Alice",
+//     age:25
+// }
 // console.log(person)
 //Classes
 var Animal = /** @class */ (function () {
@@ -116,3 +136,75 @@ var CardinalDirections;
 })(CardinalDirections || (CardinalDirections = {}));
 console.log(CardinalDirections.North);
 console.log(CardinalDirections.West);
+//9-9-24
+//function
+function addNumber(a, b) {
+    if (a === void 0) { a = 10; }
+    if (b === void 0) { b = a; }
+    // console.log(a*b) 
+}
+//Rest Parameters
+function add(a, b) {
+    var rest = [];
+    for (var _i = 2; _i < arguments.length; _i++) {
+        rest[_i - 2] = arguments[_i];
+    }
+    console.log(a, b, rest);
+    return rest.reduce(function (cv, acc) { return cv + acc; }, 0);
+}
+console.log(add(10, 10, 10, 10));
+//Special Type
+var value1 = true;
+value1 = "string";
+// console.log(value1)//no error
+var value2 = 1;
+value2 = 3;
+// console.log(typeof value2,"type")
+var value3;
+var value4;
+var value5;
+//Casting is the Type of overriding the a type:explictly
+//as
+var someValue = "string";
+var strLength = someValue.length;
+//angle-brackets <> not for JSX
+var strLength2 = someValue.length;
+//Classes
+// public-(default) allows access to the class member from anywhere
+//private - only allows access to the class member from within the class
+//protected - allows access  to the class member  from itself  and any classes that inherit it
+var Person = /** @class */ (function () {
+    function Person(name, age, date) {
+        this.date = 0;
+        this.name = name;
+        this.age = age;
+        if (date !== undefined) {
+            this.date = date;
+        }
+    }
+    Person.prototype.getDate = function () {
+        return this.date;
+    };
+    Person.prototype.getName = function () {
+        return this.name;
+    };
+    return Person;
+}());
+var User1 = /** @class */ (function (_super) {
+    __extends(User1, _super);
+    function User1(name, age, date, isAlive) {
+        var _this = _super.call(this, name, age, date) || this;
+        _this.isAlive = true;
+        _this.isAlive = isAlive;
+        return _this;
+    }
+    User1.prototype.checkIsAlive = function () {
+        console.log("The User ".concat(this.getName(), " of date ").concat(this.getDate(), " is alive ").concat(this.isAlive));
+    };
+    return User1;
+}(Person));
+var person = new Person("John", 25, 2024);
+console.log(person.getName());
+// console.log(person.name)//Error becoz of private
+var user = new User1("Jane", 30, 2024, true);
+user.checkIsAlive();
