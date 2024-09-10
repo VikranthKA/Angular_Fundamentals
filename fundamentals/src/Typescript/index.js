@@ -136,6 +136,9 @@ var CardinalDirections;
 })(CardinalDirections || (CardinalDirections = {}));
 console.log(CardinalDirections.North);
 console.log(CardinalDirections.West);
+/*
+______________________________________________________________________________________________________________
+*/
 //9-9-24
 //function
 function addNumber(a, b) {
@@ -152,7 +155,7 @@ function add(a, b) {
     console.log(a, b, rest);
     return rest.reduce(function (cv, acc) { return cv + acc; }, 0);
 }
-console.log(add(10, 10, 10, 10));
+console.log(add(10, 10, 10, 10), "rest operator");
 //Special Type
 var value1 = true;
 value1 = "string";
@@ -161,6 +164,7 @@ var value2 = 1;
 value2 = 3;
 // console.log(typeof value2,"type")
 var value3;
+// value3="st"
 var value4;
 var value5;
 //Casting is the Type of overriding the a type:explictly
@@ -171,8 +175,8 @@ var strLength = someValue.length;
 var strLength2 = someValue.length;
 //Classes
 // public-(default) allows access to the class member from anywhere
-//private - only allows access to the class member from within the class
-//protected - allows access  to the class member  from itself  and any classes that inherit it
+//private -     only allows access to the class member from within the class
+//protected - allows access  to the class   member  from itself  and any classes that inherit it
 var Person = /** @class */ (function () {
     function Person(name, age, date) {
         this.date = 0;
@@ -208,3 +212,8 @@ console.log(person.getName());
 // console.log(person.name)//Error becoz of private
 var user = new User1("Jane", 30, 2024, true);
 user.checkIsAlive();
+/*
+______________________________________________________________________________________________________________
+*/
+//10-9-24
+//implements 

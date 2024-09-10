@@ -122,6 +122,9 @@ enum CardinalDirections {
 console.log(CardinalDirections.North)
 console.log(CardinalDirections.West)
 
+/*
+______________________________________________________________________________________________________________
+*/
 
 //9-9-24
 
@@ -139,7 +142,7 @@ function add(a:number,b:number,...rest:number[]){
 
 }
 
-console.log(add(10,10,10,10))
+console.log(add(10,10,10,10),"rest operator")
 
 //Special Type
 
@@ -152,6 +155,7 @@ value2 = 3
 // console.log(typeof value2,"type")
 
 let value3:never
+// value3="st"
 
 let value4:undefined
 
@@ -160,7 +164,7 @@ let value5:null
 
 // Type Alias
 //TS
-type CarYear = number
+type CarYear = number | string
 type CarModel = string
 type CarColors = string[]
 
@@ -186,8 +190,8 @@ let strLength2:number = (<string>someValue).length
 
 //Classes
 // public-(default) allows access to the class member from anywhere
-//private - only allows access to the class member from within the class
-//protected - allows access  to the class member  from itself  and any classes that inherit it
+//private -     only allows access to the class member from within the class
+//protected - allows access  to the class   member  from itself  and any classes that inherit it
 
 class Person {
     private name: string;
@@ -230,6 +234,12 @@ console.log(person.getName())
 
 const user = new User1("Jane",30,2024,true)
 user.checkIsAlive()
+
+/*
+______________________________________________________________________________________________________________
+*/
+//10-9-24
+//implements 
 
 
 

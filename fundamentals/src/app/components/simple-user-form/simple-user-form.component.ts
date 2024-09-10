@@ -3,11 +3,11 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-simple-form',
+  selector: 'simple-user-form',
   standalone: true,
   imports: [ReactiveFormsModule,CommonModule],  
-  templateUrl: './simple-form.component.html',
-  styleUrls: ['./simple-form.component.css'] 
+  templateUrl: './simple-user-form.component.html',
+  styleUrls: ['./simple-user-form.component.css'] 
 })
 export class SimpleFormComponent {
   form: FormGroup;
@@ -36,7 +36,7 @@ export class SimpleFormComponent {
 
     if(this.form.valid){
       this.formData = this.form.value;
-      this.formDataKeys= Object.keys(this.formData)
+      this.formDataKeys= Object.keys(this.formData) 
     }
   }
 

@@ -6,7 +6,7 @@
 * **MVC at client side**
 * **Quicker development & less dependency on third party library(eg-routing,validation,SSR)**
 * **Angular apps are fast(AOT compiler)**
-
+ 
 ___
 
 ## Steps to works with Angular
