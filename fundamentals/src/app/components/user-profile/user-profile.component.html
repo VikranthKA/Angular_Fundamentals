@@ -1,0 +1,52 @@
+<div>
+    <h1>The user name is {{name.toLocaleLowerCase() }} and he is {{status}} and he gets {{salary}} lpa of salary</h1>
+    <button [disabled]="isBtnDisabled">Button</button>
+    <h2>The Input value is {{inputValue}}</h2>
+    <!-- <input type="text" [value]="inputValue" (change)="onChange($event)"/> -->
+    <input type="text" [(ngModel)]="inputValue"/>
+    <div>
+        @for(user of userInfo;track user.name){
+            <h3>Name:{{user.name}} 
+                Status :{{user.isOnline ? "Online" : "Offline"}}
+                Age:{{user.age}}
+            </h3>
+        }
+    </div>
+    <div>
+        <h2>Displaying the user whose age is greater than 18</h2>
+        @for(user of userInfo;track user.name){
+            @if(user.age >= 18){
+                <h3>Name:{{user.name}} 
+                    Status :{{user.isOnline ? "Online" : "Offline"}}
+                    Age:{{user.age}}
+                </h3>
+
+            }@else {
+                <h3>User :{{user.name}} are not valid</h3>
+            }
+        }
+    </div>
+    <hr/>
+    <h1>Directives</h1>
+
+    <div *ngFor="let user of userInfo">
+        <h3 *ngIf="user.age >= 18; else elseBlock">Name:{{user.name}} 
+            Status :{{user.isOnline ? "Online" : "Offline"}}
+            Age:{{user.age}}
+        </h3>
+        <ng-template #elseBlock>
+                <h3>User :{{user.name}} are not valid</h3>
+
+
+        </ng-template>
+
+    </div>
+
+    <hr/>
+    Props
+    <h1>Name by Props {{username}} isSingle -{{isSingle ?"S":"N_S"}} pH-{{ph}}</h1>
+
+
+
+
+</div>

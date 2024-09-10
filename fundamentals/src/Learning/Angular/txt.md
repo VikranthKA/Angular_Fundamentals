@@ -24,18 +24,30 @@ Standalone Component?
 * Less boiler code/configuration 
 * Lazy loading a component is also possible now
 
+Interpolation
+* Use the created variable in the anguler HTML file `{{variable}}`
 
+Property Binding
+* Its a way of using the variable value to value of a property eg
+`<button [disabled="isBtnDisabled">Button</button>`
+* The value enclosed with the square bracket is the property we are binding
 
+Event binding
+* In the HTML we can see the `onChange event` instead of that we use the just `(change)="function()"` eg 
+`<input type="text" (input)="onChange()"/>`
+* If the `onChange()` has any parameter the it would be `onChange($event)`
+* In the ts file 
+    `onChange(e:Event):void{const value = (e.target<HTMLInputElement>.value)console.log(value)}`
 
+Two way data Binding
 
+* The changing to data for `TS to HTML and HTML to TS` by using the above code we can give `inputValue =  value`
 
+* We can use another syntax and we can simplify the above code is by `[(ng-Model)]="inputValue"` and import the `FormModule ` in TS file and no need of `onChange in the TS` 
+* syntax `<input type="text" [(ngModel)]="inputValue"/>`
 
-
-
-
-
-
-
+For and If in 17 version
+* We can use the for loop to loop through the values in angular the syntax would be in TS ` ` and in Template HTML ```@for(user ofuserInfo;track user.name){@if(user.age >= 18){<h3>Name:{{user.name}} Status :{{user.isOnline ? "Online" : "Offline"}}Age:{{user.age}}</h3>}@else {<h3>User :{{user.name}} are not valid</h3>}}```
 ___
 
 
@@ -47,6 +59,14 @@ Are functions that are executed when they are found on the DOM by the Angular co
 | **Component**         | Defined using the `@Component` decorator. <br> Angular adds the content based on where you specify the selector.          |
 | **Structural Directive** | Alters or modifies the DOM. <br> Examples: `*ngIf`: Acts according to some give condition.When condition is true, element will be added to the DOM, `*ngFor`:This directive repeats itself for every element present in the list, `*ngSwitch`.                                             | **Attribute** | Modify behaviour of existing elements   Used as attribute elements .
 | **Custom** | Defined under the @Directive decorator `*@Directive decorator*`Selector is used to identify the attribute
+
+
+___
+Props
+* The way of passing the data form parent to child`<app-child user="name"/>` user is the props
+* And recieve the value in the ts as `@Input() user:string=""`
+* Can change the name as other by using alias `{alias:"user"}`
+* `@Input({transform:AnyFunction/booleanAttribute})` to change the data type to required
 
 
 
