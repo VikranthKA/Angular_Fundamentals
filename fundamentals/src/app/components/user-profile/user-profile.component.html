@@ -1,5 +1,8 @@
 <div>
-    <h1>The user name is {{name.toLocaleLowerCase() }} and he is {{status}} and he gets {{salary}} lpa of salary</h1>
+    <h1>The user name is {{name | uppercase }} and he is {{status}} and he gets {{salary | currency:"INR"}} lpa of salary
+
+        and phoneNumber is {{phoneNumber | contryCode:"USA"}}
+    </h1>
     <button [disabled]="isBtnDisabled">Button</button>
     <h2>The Input value is {{inputValue}}</h2>
     <!-- <input type="text" [value]="inputValue" (change)="onChange($event)"/> -->
@@ -44,7 +47,9 @@
 
     <hr/>
     Props
-    <h1>Name by Props {{username}} isSingle -{{isSingle ?"S":"N_S"}} pH-{{ph}}</h1>
+    <h1 [style.backgroundColor]="bgColor">Name by Props {{username}} isSingle -{{isSingle ?"S":"N_S"}} pH-{{ph}}</h1>
+    <h1 appHighlight="bgColor">Name by Props {{username}} isSingle -{{isSingle ?"S":"N_S"}} pH-{{ph}}</h1>
+
 
 
 

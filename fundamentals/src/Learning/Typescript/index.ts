@@ -239,7 +239,42 @@ user.checkIsAlive()
 ______________________________________________________________________________________________________________
 */
 //10-9-24
-//implements 
+//implements : When a class implements an interface, it must define all the properties and methods specified in the interface. However, we can free to add the additional properties and methods beyond those defined in the interface
+
+interface AnimalInterface{
+    name:string;
+    speak():void;
+}
+
+class Cat implements AnimalInterface{
+    name : string;//bcoz of AnimalInterface
+    age :number;//extra property
+
+    constructor(name:string,age:number){
+        this.name=name;
+        this.age=age;//using extra property
+
+    }
+
+    speak(): void {//bcoz of AnimalInterface
+        console.log(`${this.name} always meows.`)
+    }
+
+    sleep():void{
+        console.log(`${this.name} is sleeping`)
+    }
+
+
+
+}
+
+
+const myCat = new Cat('Whiskers',2);
+myCat.speak()
+myCat.sleep()
+console.log(`Name :${myCat.name} Age: ${myCat.age}`);
+
+
 
 
 

@@ -212,8 +212,20 @@ console.log(person.getName());
 // console.log(person.name)//Error becoz of private
 var user = new User1("Jane", 30, 2024, true);
 user.checkIsAlive();
-/*
-______________________________________________________________________________________________________________
-*/
-//10-9-24
-//implements 
+var Cat = /** @class */ (function () {
+    function Cat(name, age) {
+        this.name = name;
+        this.age = age; //using extra property
+    }
+    Cat.prototype.speak = function () {
+        console.log("".concat(this.name, " always meows."));
+    };
+    Cat.prototype.sleep = function () {
+        console.log("".concat(this.name, " is sleeping"));
+    };
+    return Cat;
+}());
+var myCat = new Cat('Whiskers', 2);
+myCat.speak();
+myCat.sleep();
+console.log("Name :".concat(myCat.name, " Age: ").concat(myCat.age));

@@ -29,7 +29,9 @@ Interpolation
 
 Property Binding
 * Its a way of using the variable value to value of a property eg
-`<button [disabled="isBtnDisabled">Button</button>`
+```Typescript
+<button [disabled="isBtnDisabled"]>Button</button>
+```
 * The value enclosed with the square bracket is the property we are binding
 
 Event binding
@@ -37,7 +39,9 @@ Event binding
 `<input type="text" (input)="onChange()"/>`
 * If the `onChange()` has any parameter the it would be `onChange($event)`
 * In the ts file 
-    `onChange(e:Event):void{const value = (e.target<HTMLInputElement>.value)console.log(value)}`
+```Typescript
+onChange(e:Event):void{const value = (e.target<HTMLInputElement>.value)console.log(value)}
+```
 
 Two way data Binding
 
@@ -47,7 +51,10 @@ Two way data Binding
 * syntax `<input type="text" [(ngModel)]="inputValue"/>`
 
 For and If in 17 version
-* We can use the for loop to loop through the values in angular the syntax would be in TS ` ` and in Template HTML ```@for(user ofuserInfo;track user.name){@if(user.age >= 18){<h3>Name:{{user.name}} Status :{{user.isOnline ? "Online" : "Offline"}}Age:{{user.age}}</h3>}@else {<h3>User :{{user.name}} are not valid</h3>}}```
+* We can use the for loop to loop through the values in angular the syntax would be in TS ` ` and in Template HTML 
+```HTML
+@for(user ofuserInfo;track user.name){@if(user.age >= 18){<h3>Name:{{user.name}} Status :{{user.isOnline ? "Online" : "Offline"}}Age:{{user.age}}</h3>}@else {<h3>User :{{user.name}} are not valid</h3>}}
+```
 ___
 
 
@@ -67,6 +74,57 @@ Props
 * And recieve the value in the ts as `@Input() user:string=""`
 * Can change the name as other by using alias `{alias:"user"}`
 * `@Input({transform:AnyFunction/booleanAttribute})` to change the data type to required
+
+___
+Pipe & Custom Pipe
+* We can add some pipe ti existing code to change the data in UI`{{name | currency:"INR"}}`
+* For custom pipes 
+`ng g p pipes/countryCode`
+* In the pipe.ts file we can see the code as `transform(value: unknown, ...args: unknown[]): unknown {return null}`
+* Inside the object we can write the logic `{return "+91 "+value}`
+
+___
+Custom Directives
+* `ng g d directives/nameOfYourChoice`
+ ```Typescript
+import { Directive, ElementRef, HostBinding, HostListener } from '@angular/core';
+
+@Directive({
+  selector: '[appHighlight]',
+  standalone: true
+})
+export class HighlightDirective {
+
+  constructor(private el:ElementRef) {
+
+   }
+
+   @HostBinding("style.backgroundColor")
+   CustomBgColor ="orange"
+
+   @HostListener("mouseenter")
+   changeFontSize(){
+    console.log("mouse enter")
+    this.el.nativeElement.style.fontSize = "50px"
+   }
+
+   @HostListener("mouseleave")
+   resetFontSize(){
+    this.el.nativeElement.style.fontSize = "30px"
+
+    console.log("mouse leave")
+   }
+
+
+}
+```
+
+___
+Life Cycles In Angular
+* constructor{  
+* Init properties
+* Dependency injection
+* Event-listner registers}
 
 
 
