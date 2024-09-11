@@ -275,9 +275,77 @@ myCat.sleep()
 console.log(`Name :${myCat.name} Age: ${myCat.age}`);
 
 
+//______________________________________________________________________________________________________________
+
+//11-9-24
+
+//Utility Types
+//Partial
+
+interface Point{
+    x:number;
+    y:number;
+
+}
+
+let pointPart :Partial<Point>={}//x and y are optional
+pointPart.x=10;
+
+//Required
+interface Car2{
+    make:string;
+    model:string;
+    milage?:number;
+}
+
+let myCar2:Required<Car2>={
+    make:"Ford",
+    model:"Focus",
+    milage:1200
+}
+//Record key value
+const nameAgeMap:Record<string,number>={
+    "Alice":21,
+    "Bob":25
+}
 
 
+//keyof - extract the key type from an object type
+type ObjectType = {
+    name:string;
+    age:number;
+}
 
+type ObjectKeys = keyof ObjectType//"name" | "age"
+
+
+function getValue<T,K extends keyof T>(obj:T,key:K):T[K]{
+    return obj[key]
+}
+
+const person3 = {
+    name:"John",age:30
+}
+
+const name1 = getValue(person3,"name")//"John"
+const age1 = getValue(person3,"age")//30
+
+
+//______________________________________________________________________________________________________________
+
+//12-9-24
+
+/*
+TS
+Deal with null and undefined
+Definitely Typed
+TS updates and new version
+
+Angular
+http Client,inject
+State management
+routes
+*/
 
 
 
