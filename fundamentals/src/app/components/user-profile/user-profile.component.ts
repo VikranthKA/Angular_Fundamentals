@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { booleanAttribute, Component, Input, numberAttribute } from '@angular/core';
+import { booleanAttribute, Component, ElementRef, Input, numberAttribute, SimpleChange, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ContryCodePipe } from '../../pipes/contry-code.pipe';
 import { HighlightDirective } from '../../directives/highlight.directive';
@@ -20,6 +20,32 @@ function formatName(value:string):string{
   styleUrl: './user-profile.component.css'
 })
 export class UserProfileComponent {
+  @ViewChild("myHeadingbottom") heading?:ElementRef
+
+
+  constructor(){
+    console.log("constructor called",this.name)
+    console.log("constructor",this.heading?.nativeElement.textContent)
+  }
+
+  ngAfterViewInit():void{
+    console.log("afterview",this.heading?.nativeElement.textContent)
+
+  }
+
+  ngOnChanges(changes:SimpleChange):void{
+    console.log("ngOnChanges",changes)
+    console.log("ngOnChanges",this.heading?.nativeElement.textContent)
+  }
+
+  ngOnInit(){
+    console.log("ngOnInt called",this.name)
+    console.log("ngOnInt called",this.heading?.nativeElement.textContent)
+  }
+
+  ngOnDestroy(){
+    console.log("component destroyed")
+  }
   name: string = "ABCD"
   status: string = "single"
   salary: number = 600000

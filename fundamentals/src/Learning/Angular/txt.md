@@ -122,9 +122,36 @@ export class HighlightDirective {
 ___
 Life Cycles In Angular
 * constructor{  
-* Init properties
-* Dependency injection
-* Event-listner registers}
+ * Init properties
+ * Dependency injection
+ * Event-listner registers}
+above will run in the constructor
+
+* ngOnChnages(changes:SimpleChange):void{
+  * if any data changes This will change again
+}
+
+* ngOnInit(){
+  * init properties
+  * event listener register
+  * Api call
+}
+
+* ngOnDestroy(){
+  * unregister event listner
+}
+
+These are the above call before HTML is loaded 
+
+After loaded
+*   ```Typescript
+    ngAfterViewInit():void{
+    console.log("afterview",this.heading?.nativeElement.textContent)
+
+  }```
+
+
+
 
 
 
