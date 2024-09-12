@@ -15,7 +15,7 @@ export class HighlightDirective {
 
    @HostListener("mouseenter")
    changeFontSize(){
-    console.log("mouse enter")
+    console.log("mouse enter",new Date())
     this.el.nativeElement.style.fontSize = "50px"
    }
 

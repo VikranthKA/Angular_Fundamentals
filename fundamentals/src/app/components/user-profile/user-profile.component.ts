@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { booleanAttribute, Component, ElementRef, Input, numberAttribute, SimpleChange, ViewChild } from '@angular/core';
+import { booleanAttribute, Component, ElementRef, input, Input, numberAttribute, SimpleChange, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ContryCodePipe } from '../../pipes/contry-code.pipe';
 import { HighlightDirective } from '../../directives/highlight.directive';
@@ -29,13 +29,13 @@ export class UserProfileComponent {
   }
 
   ngAfterViewInit():void{
-    console.log("afterview",this.heading?.nativeElement.textContent)
+    console.log("afterview",this.heading?.nativeElement?.textContent)
 
   }
 
   ngOnChanges(changes:SimpleChange):void{
     console.log("ngOnChanges",changes)
-    console.log("ngOnChanges",this.heading?.nativeElement.textContent)
+    console.log("ngOnChanges",this.heading?.nativeElement?.textContent)
   }
 
   ngOnInit(){
@@ -46,6 +46,7 @@ export class UserProfileComponent {
   ngOnDestroy(){
     console.log("component destroyed")
   }
+
   name: string = "ABCD"
   status: string = "single"
   salary: number = 600000
@@ -70,6 +71,10 @@ export class UserProfileComponent {
   //   }
 
   @Input({alias:"user",transform:formatName}) username:string="";
+  // username = input("",{
+  //   alias:"user",//use of signal
+  //   transform:formatName
+  // })
   @Input({transform:booleanAttribute}) isSingle!:boolean;
   @Input({transform:numberAttribute}) ph!:number;
 

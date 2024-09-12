@@ -144,12 +144,167 @@ above will run in the constructor
 These are the above call before HTML is loaded 
 
 After loaded
-*   ```Typescript
+```Typescript
     ngAfterViewInit():void{
     console.log("afterview",this.heading?.nativeElement.textContent)
+    }
 
-  }```
 
+```
+
+Services
+* Its way manage the State and handling the promises in Angular
+* `ng g s services/nameOfServices`
+```Typescript
+  import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { promises } from 'dns';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class JokeService {
+  constructor(private http:HttpClient) { 
+  }
+
+  // private http = inject(HttpClient)//for function
+  category:string="dev"
+  getJoke(){
+    //return the Observable<Object>
+    return this.http.get(`https://v2.jokeapi.dev/joke/Programming?type=single`)
+
+
+  } 
+}
+
+```
+
+* And In the any Component use the data 
+```Typescript
+import { Component } from '@angular/core';
+import { JokeService } from '../../services/joke.service';
+
+@Component({
+  selector: 'app-jokes',
+  standalone: true,
+  imports: [],
+  templateUrl: './jokes.component.html',
+  styleUrl: './jokes.component.css'
+})
+export class JokesComponent {
+  joke="loading"
+  constructor(private jokeService:JokeService){
+    
+  }
+  ngOnInit(){
+    this.getAnotherJoke()
+
+  }
+  getAnotherJoke(){
+    this.joke="loading"
+    this.jokeService.getJoke().subscribe((data:any)=>{
+      this.joke = data.joke
+    },(err)=>{
+      console.log("Error in Promise")
+    })
+  }
+}
+
+
+```
+* We can use the Services as a state Management 
+```Typescript
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CounterService {
+  private count = 0
+
+  getCounter(){
+    return this.count
+  }
+
+  incrementCounter(){
+    this.count += 1
+  }
+
+  decrementCounter(){
+    if(this.count>0)
+    this.count -= 1
+  }
+
+} 
+
+```
+
+* In the above code we have done all basic of count inc and dec and now use in the 3 components
+  `A B1 B2`
+* use the counterService in A and B1 and in the B1 use the B2
+ * In all the three component the changes will change
+* Use the `providers:[CounterService]` in the B1 a new instance of counterService will be get in the B1
+
+
+___
+Signal 
+* To the angular UI tells that this variable or value should be change in UI
+* Then above `counterService` code will be like
+```Typescript
+import { computed, effect, Injectable, Signal, signal } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CounterService {
+  private count = signal(0)
+  
+  doubleCount:Signal<number>=computed(()=>this.count()*2)
+
+  constructor(){
+    effect(()=>{
+      console.log("count",this.count(),"double count :",this.doubleCount())
+    })
+  }
+  getCounter(){
+    return this.count()
+  }
+
+  incrementCounter(){
+    // this.count += 1
+    this.count.update((oldValue)=>oldValue+1)
+  }
+
+  decrementCounter(){
+     if(this.count()>0) this.count.update((oldValue=>oldValue-1))
+    // this.count -= 1
+  
+  }
+
+}
+
+```
+* `username = input("",{alias:"user",transform:formatName}),this.username(),name()` for input in the HTML
+
+
+___
+Routing
+* ```Typescript
+  import { routes } from './app.routes';
+
+  export const appConfig: ApplicationConfig = {
+    providers: [provideRouter(routes)]
+  };
+
+  ```
+
+* ```Typescript
+  export const routes: Routes = [
+    {path:"login",component:LoginComponent},
+    {path:"register",component:RegisterComponent}
+  ];
+
+```
 
 
 
