@@ -70,7 +70,7 @@ class Animal{
 }
 
 const dog = new Animal("Dog")
-dog.speak()
+// dog.speak()
 
 
 //Genrics
@@ -79,7 +79,7 @@ function identity<T>(args:T):T{
     return args
 }
 
-console.log(identity<number>(333))
+// console.log(identity<number>(333))
 
 //Union Types
 
@@ -119,8 +119,8 @@ enum CardinalDirections {
     West
 }
 
-console.log(CardinalDirections.North)
-console.log(CardinalDirections.West)
+// console.log(CardinalDirections.North)
+// console.log(CardinalDirections.West)
 
 /*
 ______________________________________________________________________________________________________________
@@ -142,7 +142,7 @@ function add(a:number,b:number,...rest:number[]){
 
 }
 
-console.log(add(10,10,10,10),"rest operator")
+// console.log(add(10,10,10,10),"rest operator")
 
 //Special Type
 
@@ -229,7 +229,7 @@ class User1 extends Person{
 }
 
 const person = new Person("John", 25,2024);
-console.log(person.getName())
+// console.log(person.getName())
 // console.log(person.name)//Error becoz of private
 
 const user = new User1("Jane",30,2024,true)
@@ -270,9 +270,9 @@ class Cat implements AnimalInterface{
 
 
 const myCat = new Cat('Whiskers',2);
-myCat.speak()
-myCat.sleep()
-console.log(`Name :${myCat.name} Age: ${myCat.age}`);
+// myCat.speak()
+// myCat.sleep()
+// console.log(`Name :${myCat.name} Age: ${myCat.age}`);
 
 
 //______________________________________________________________________________________________________________
@@ -346,6 +346,102 @@ http Client,inject
 State management
 routes
 */
+
+//______________________________________________________________________________________________________________
+
+//18-9-24
+
+
+class Stack<T>{
+    private items :T[]=[];
+
+    push(item:T):void{
+        this.items.push(item)
+    }
+
+    pop():T|undefined{
+        return this.items.pop()
+
+    }
+
+    size():number{
+
+        return this.items.length
+    }
+}
+
+
+const numberStack1 = new Stack<number>()
+
+console.log(numberStack1,"1")
+numberStack1.push(1)
+numberStack1.push(2)
+console.log(numberStack1.pop())//2
+console.log(numberStack1.size(),"number length")
+
+const stringStack = new Stack<string>()
+
+stringStack.push("helo")
+
+stringStack.push("word")
+console.log(stringStack.pop(),"pop string")
+
+
+//Union
+
+function processValue(value:number | string):number{
+    if(typeof value === 'string') return value.length
+    return value
+}
+
+console.log(processValue(123))//123
+console.log(processValue("PCS_GLOBAL"),"string length")
+
+
+
+//Intersection & Type
+
+
+interface HasEmail{
+    email:string
+}
+
+interface HasPhone{
+    phone:string
+}
+
+type Contact = HasEmail & HasPhone
+
+function showContact(contact:Contact):string{
+    return `Email of the User is ${contact.email} and Phone NUmber ${contact.phone}`
+}
+
+const contact:Contact={
+    email:"mars@gmail.com",
+    phone:"1234567890"
+}
+
+console.log(showContact(contact),"Contact Info")
+
+
+//Recursive
+
+type NestedArray<T> = T | NestedArray<T>[];
+
+function flatten(arr:NestedArray<number>):number[]{
+    return Array.isArray(arr) 
+                  ?
+           arr.reduce<number[]>((acc,cv)=>acc.concat(flatten(cv)),[])
+                  :
+                [arr]
+}
+
+const nestedArray:NestedArray<number> = [1, [2, 3], [[4]], [5, [6]]]
+
+console.log(flatten(nestedArray),"nestedResult")
+
+
+
 
 
 

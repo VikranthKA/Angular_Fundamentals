@@ -101,12 +101,12 @@ var Animal = /** @class */ (function () {
     return Animal;
 }());
 var dog = new Animal("Dog");
-dog.speak();
+// dog.speak()
 //Genrics
 function identity(args) {
     return args;
 }
-console.log(identity(333));
+// console.log(identity<number>(333))
 //Union Types
 function prindId(id) {
     console.log("ID:".concat(id));
@@ -134,8 +134,8 @@ var CardinalDirections;
     CardinalDirections[CardinalDirections["South"] = 3] = "South";
     CardinalDirections[CardinalDirections["West"] = 4] = "West";
 })(CardinalDirections || (CardinalDirections = {}));
-console.log(CardinalDirections.North);
-console.log(CardinalDirections.West);
+// console.log(CardinalDirections.North)
+// console.log(CardinalDirections.West)
 /*
 ______________________________________________________________________________________________________________
 */
@@ -155,7 +155,7 @@ function add(a, b) {
     console.log(a, b, rest);
     return rest.reduce(function (cv, acc) { return cv + acc; }, 0);
 }
-console.log(add(10, 10, 10, 10), "rest operator");
+// console.log(add(10,10,10,10),"rest operator")
 //Special Type
 var value1 = true;
 value1 = "string";
@@ -208,7 +208,7 @@ var User1 = /** @class */ (function (_super) {
     return User1;
 }(Person));
 var person = new Person("John", 25, 2024);
-console.log(person.getName());
+// console.log(person.getName())
 // console.log(person.name)//Error becoz of private
 var user = new User1("Jane", 30, 2024, true);
 user.checkIsAlive();
@@ -226,6 +226,88 @@ var Cat = /** @class */ (function () {
     return Cat;
 }());
 var myCat = new Cat('Whiskers', 2);
-myCat.speak();
-myCat.sleep();
-console.log("Name :".concat(myCat.name, " Age: ").concat(myCat.age));
+var pointPart = {}; //x and y are optional
+pointPart.x = 10;
+var myCar2 = {
+    make: "Ford",
+    model: "Focus",
+    milage: 1200
+};
+//Record key value
+var nameAgeMap = {
+    "Alice": 21,
+    "Bob": 25
+};
+function getValue(obj, key) {
+    return obj[key];
+}
+var person3 = {
+    name: "John", age: 30
+};
+var name1 = getValue(person3, "name"); //"John"
+var age1 = getValue(person3, "age"); //30
+//______________________________________________________________________________________________________________
+//12-9-24
+/*
+TS
+Deal with null and undefined
+Definitely Typed
+TS updates and new version
+
+Angular
+http Client,inject
+State management
+routes
+*/
+//______________________________________________________________________________________________________________
+//18-9-24
+var Stack = /** @class */ (function () {
+    function Stack() {
+        this.items = [];
+    }
+    Stack.prototype.push = function (item) {
+        this.items.push(item);
+    };
+    Stack.prototype.pop = function () {
+        return this.items.pop();
+    };
+    Stack.prototype.size = function () {
+        return this.items.length;
+    };
+    return Stack;
+}());
+var numberStack1 = new Stack();
+console.log(numberStack1, "1");
+numberStack1.push(1);
+numberStack1.push(2);
+console.log(numberStack1.pop()); //2
+console.log(numberStack1.size(), "number length");
+var stringStack = new Stack();
+stringStack.push("helo");
+stringStack.push("word");
+console.log(stringStack.pop(), "pop string");
+//Union
+function processValue(value) {
+    if (typeof value === 'string')
+        return value.length;
+    return value;
+}
+console.log(processValue(123)); //123
+console.log(processValue("PCS_GLOBAL"), "string length");
+function showContact(contact) {
+    return "Email of the User is ".concat(contact.email, " and Phone NUmber ").concat(contact.phone);
+}
+var contact = {
+    email: "mars@gmail.com",
+    phone: "1234567890"
+};
+console.log(showContact(contact), "Contact Info");
+function flatten(arr) {
+    return Array.isArray(arr)
+        ?
+            arr.reduce(function (acc, cv) { return acc.concat(flatten(cv)); }, [])
+        :
+            [arr];
+}
+var nestedArray = [1, [2, 3], [[4]], [5, [6]]];
+console.log(flatten(nestedArray), "nestedResult");
