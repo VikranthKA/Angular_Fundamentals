@@ -1,0 +1,25 @@
+const path = require('path');
+
+module.exports = {
+  config: path.resolve('config', 'config.js'),
+  'models-path': path.resolve('db', 'models'),
+  'seeders-path': path.resolve('db', 'seeders'),
+  'migrations-path': path.resolve('db', 'migrations'),
+};
+
+/*
+
+To create all the file and folder wt we specify above
+npx sequelize-cli init 
+
+
+To create db
+npx sequelize db:create
+
+Create db model with db_type
+npx sequelize-cli model:generate --name user --attributes userType:ENUM,firstName:string,lastName:string,email:string,password:string
+
+create table as user in db
+npx sequelize-cli db:migrate
+
+*/
