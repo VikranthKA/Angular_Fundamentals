@@ -2,7 +2,7 @@
 const {Model, Sequelize, DataTypes} = require('sequelize');
 const sequelize = require('../../config/database');
 const bcrypt = require('bcrypt');
-const AppError = require('../../../utils/appError');
+const AppError = require('../../utils/appError');
 
 
 module.exports = sequelize.define('user',{
@@ -13,24 +13,73 @@ module.exports = sequelize.define('user',{
         type: DataTypes.INTEGER
       },
       userType: {
-        type: DataTypes.ENUM('0','1','2')
+        type: DataTypes.ENUM('0','1','2'),
+        allowNull:false,
+        validate:{
+          notNull:{
+            msg:"userType cannot be null"
+          },
+          notEmpty:{
+            msg:"userTpe cannot be empty"
+          }
+        }
       },
       firstName: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,        allowNull:false,
+        validate:{
+          notNull:{
+            msg:"firstName cannot be null"
+          },
+          notEmpty:{
+            msg:"firstName cannot be empty"
+          }
+        }
       },
       lastName: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull:false,
+        validate:{
+          notNull:{
+            msg:"lastName cannot be null"
+          },
+          notEmpty:{
+            msg:"lastName cannot be empty"
+          }
+        }
       },
       email: {
         type: DataTypes.STRING,
-        unique:true
+        unique:true,
+        allowNull:false,
+        validate:{
+          notNull:{
+            msg:"email cannot be null"
+          },
+          notEmpty:{
+            msg:"email cannot be empty"
+          },
+          isEmail:{
+            msg:"Invalid Email"
+          }
+        }
       },
       password: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,        allowNull:false,
+        validate:{
+          notNull:{
+            msg:"password cannot be null"
+          },
+          notEmpty:{
+            msg:"password cannot be empty"
+          }
+        }
       },
       confirmPassword: {
         type: DataTypes.VIRTUAL,
         set(value){
+          if(this.password.length < 3){
+            throw new AppError('Password cannot be lessthan 3 letters',400)
+          }
           if(value===this.password){
             const hashPassword  = bcrypt.hashSync(value,10);
             this.setDataValue('password',hashPassword)

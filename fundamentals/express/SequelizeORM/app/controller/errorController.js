@@ -1,4 +1,4 @@
-const AppError = require("../../../utils/appError");
+const AppError = require("../../utils/appError");
 
 const sendErrorDev = (error,res)=>{
     const statusCode = error.statusCode || 500;
@@ -39,6 +39,13 @@ const globalErrorHandler = (err,req,res,next)=>{
     // if(err.code === 500){
     //     error = new AppError()
     // }
+    if(err.name === 'SequelizeValidationError'){
+        err = new AppError(err.errors[0].message,400);
+
+    }
+    if(err.name==='SequelizeUniqueConstraintError'){
+        err = new AppError(err.errors[0].message,400);
+    }
     if(process.env.NODE_ENV==='development'){
         return sendErrorDev(err,res)
     }
