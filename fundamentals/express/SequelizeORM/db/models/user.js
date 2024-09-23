@@ -1,7 +1,8 @@
 'use strict';
 const {Model, Sequelize, DataTypes} = require('sequelize');
 const sequelize = require('../../config/database');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const AppError = require('../../../utils/appError');
 
 
 module.exports = sequelize.define('user',{
@@ -21,7 +22,8 @@ module.exports = sequelize.define('user',{
         type: DataTypes.STRING
       },
       email: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        unique:true
       },
       password: {
         type: DataTypes.STRING
@@ -33,8 +35,8 @@ module.exports = sequelize.define('user',{
             const hashPassword  = bcrypt.hashSync(value,10);
             this.setDataValue('password',hashPassword)
           }else{
-            throw new Error(
-              'Password and Confirm password must be the same'
+            throw new AppError(
+              'Password and Confirm password must be the same',400
             )
           }
         }

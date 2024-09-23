@@ -3,8 +3,8 @@
 const user = require("../../db/models/user")
 const jwt = require("jsonwebtoken")
 const bcrypt = require('bcrypt')
-
-
+const catchAsync = require("../../../utils/cancelAsync")
+const AppError = require("../../../utils/appError")
 
 const genreateToken = (payload) => {
     return jwt.sign(payload, process.env.SECRET_KEY, {
@@ -12,17 +12,11 @@ const genreateToken = (payload) => {
     })
 }
 
-
-const signup = async (req, res, next) => {
+const signup = catchAsync(async (req, res, next) => {
     try {
-
-
-
         const body = req.body
         if (!['1', '2'].includes(body.userType)) {
-            return res.status(400).json({
-                message: "Invalid user Type"
-            })
+            throw new AppError("Invalid user Type",400)
         }
 
         const newUser = await user.create({
@@ -33,6 +27,13 @@ const signup = async (req, res, next) => {
             password: body.password,
             confirmPassword: body.confirmPassword
         })
+        
+        if (!newUser) {
+            return res.status(400).json({
+                message: "Failed to create the user",
+            })
+        
+        }
 
         const result = newUser.toJSON()
 
@@ -44,14 +45,6 @@ const signup = async (req, res, next) => {
         })
 
 
-
-
-        if (!result) {
-            return res.status(400).json({
-                message: "Failed to create the user",
-            })
-
-        }
 
         return res.status(201).json({
             message: "New user is created",
@@ -66,10 +59,10 @@ const signup = async (req, res, next) => {
     }
 
 
-}
+})
 
 
-const signin = async (req, res, next) => {
+const signin = catchAsync(async (req, res, next) => {
 
     try {
 
@@ -107,7 +100,7 @@ const signin = async (req, res, next) => {
         })
     }
 
-}
+})
 
 
 
